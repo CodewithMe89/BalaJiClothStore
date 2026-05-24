@@ -6,12 +6,14 @@ import Product from './component/Product.jsx'
 import Cart from './component/Cart.jsx'
 import Profile from './component/Profile.jsx'
 import Home from './component/Home.jsx'
+import ErrorHandling from './component/ErrorHandling'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-const Router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorHandling />,
     children: [
       {element:<Home />,
       index: true}
@@ -33,7 +35,7 @@ const Router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={Router}>
+    <RouterProvider router={router}>
     <App />
     </RouterProvider>
   </StrictMode>
