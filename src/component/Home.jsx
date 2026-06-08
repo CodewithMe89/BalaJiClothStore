@@ -1,13 +1,20 @@
 import { NavLink } from "react-router-dom"
 import { CiShop } from "react-icons/ci"
 const Home = () => {
-    return (
+    return (<>
         <section>
             <div className="Image-Container">
-                <img src="https://i.pinimg.com/736x/52/27/a4/5227a4b3c6c2999c5850c10dc9f39b8b.jpg" alt="HomeShop" />
+                <img src="https://i.pinimg.com/736x/59/fb/cc/59fbcc4a14f1fb10769bd27a1fdd9e12.jpg" alt="HomeShop" />
                 <NavLink to="/product"><CiShop /></NavLink>
             </div>
         </section>
+        <section>
+            <h3 className="category-head">Popular Categories</h3>
+            <div className="categories-container">
+                
+            </div>
+        </section>
+    </>
     )
 }
 
