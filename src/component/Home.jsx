@@ -6,8 +6,9 @@ const CategoryCard = ({category}) =>{
     const {categoryName,imageURL} = category
     
     return (
-        <NavLink key={categoryName} to={`/product/${categoryName}`}> 
+        <NavLink to={`/product/${categoryName}`}> 
         <img src={imageURL} alt={categoryName} />
+        <h3>{categoryName}</h3>
         </NavLink>
     )
 }
@@ -23,8 +24,8 @@ const Home = () => {
             <h2 className="category-head">Popular Categories</h2>
             <div className="categories-container">
                 {categories.map(category => (
-                    <div className="category-image" >
-                        <CategoryCard category={category} key={category.categoryName} />
+                    <div className="category-image" key={category.categoryName}>
+                        <CategoryCard category={category} />
                     </div>
                 ))}
             </div>
