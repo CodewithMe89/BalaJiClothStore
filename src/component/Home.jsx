@@ -23,8 +23,8 @@ const Home = () => {
             <h2 className="category-head">Popular Categories</h2>
             <div className="categories-container">
                 {categories.map(category => (
-                    <div className="category-image">
-                        <CategoryCard category={category} />
+                    <div className="category-image" >
+                        <CategoryCard category={category} key={category.categoryName} />
                     </div>
                 ))}
             </div>
