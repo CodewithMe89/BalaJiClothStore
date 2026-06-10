@@ -1,5 +1,16 @@
 import { NavLink } from "react-router-dom"
 import { CiShop } from "react-icons/ci"
+import { categories } from "../data.js"
+
+const CategoryCard = ({category}) =>{
+    const {categoryName,imageURL} = category
+    
+    return (
+        <NavLink key={categoryName} to={`/product/${categoryName}`}> 
+        <img src={imageURL} alt={categoryName} />
+        </NavLink>
+    )
+}
 const Home = () => {
     return (<>
         <section>
@@ -9,9 +20,13 @@ const Home = () => {
             </div>
         </section>
         <section>
-            <h3 className="category-head">Popular Categories</h3>
+            <h2 className="category-head">Popular Categories</h2>
             <div className="categories-container">
-
+                {categories.map(category => (
+                    <div className="category-image">
+                        <CategoryCard category={category} />
+                    </div>
+                ))}
             </div>
         </section>
     </>
