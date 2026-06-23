@@ -7,9 +7,16 @@ import ProductCard from './ProductCard'
 const Product = () => {
     const { categoryName } = useParams()
 
+    const filteredProducts = !categoryName
+    ? products
+    : products.filter(
+        product => 
+        product.category.toLowerCase()===categoryName.toLowerCase()
+    )
+
     return (
         <>
-            <section>
+            <section className="header">
                 <h2>{!categoryName ? "All Product" : categoryName}</h2>
 
                 <input type="text" placeholder="Search Products" />
@@ -20,7 +27,7 @@ const Product = () => {
 
                 </div>
                 <div className="products">
-                    {products.map((product) => (
+                    {filteredProducts.map((product) => (
                             <ProductCard key={product.productName} product={product} />
                     ))}
                 </div>

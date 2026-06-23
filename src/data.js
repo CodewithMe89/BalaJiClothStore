@@ -257,7 +257,7 @@ export const products = [
             "XL"
         ],
         ratings: 4.5,
-        imgURL: "https://cdn.rajwadi.com/image/cache/data/cotton-silk-white-kurta-pajama-45197-800x1100.jpg",
+        imgURL: "https://i.pinimg.com/736x/f0/9a/0e/f09a0e23563d1b2fc67bdfdc3cc5692b.jpg",
         category: "Traditional",
         gender: "male",
         brand: "Manyavar",
