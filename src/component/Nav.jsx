@@ -5,7 +5,7 @@ const Nav = () => {
         <header className="wrapper">
             <NavLink to="/"><h1>BalaJi Cloth</h1></NavLink>
             <nav className="menu">
-                <NavLink to="/product">Product</NavLink>
+                <NavLink to="/products">Product</NavLink>
                 <NavLink to="/cart">Cart</NavLink>
                 <NavLink to="/profile">Profile</NavLink>
             </nav>

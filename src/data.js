@@ -1,4 +1,4 @@
-const products = [
+export const products = [
     {
         productName: "Embroidered Satin Saree",
         sizes: [
@@ -433,7 +433,7 @@ const products = [
             "XL"
         ],
         ratings: 4.7,
-        imgURL: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b4cdaf847d544a7987f16b609a102211_9366/Adicolor_Trefoil_Tee_Red_IR8009_21_model.jpg",
+        imgURL: "https://i.pinimg.com/1200x/db/1c/b9/db1cb93dc4998672cdd7a8b888eb40a8.jpg",
         category: "Sports",
         gender: "unisex",
         brand: "Adidas",
@@ -492,7 +492,7 @@ const products = [
             "36"
         ],
         ratings: 4.5,
-        imgURL: "https://d118ps6mg0w7om.cloudfront.net/media/catalog/product/1/_/fit-in/1000x1333/1_mft-33411-t-134-blue-black.jpg",
+        imgURL: "https://i.pinimg.com/736x/2c/a1/78/2ca1784e64b81a62315cb72403106135.jpg",
         category: "Bottom-wear",
         gender: "male",
         brand: "Levi's",
@@ -522,7 +522,7 @@ const products = [
             "XL"
         ],
         ratings: 4.6,
-        imgURL: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ajio.com%2Fbroadstar-women-high-rise-wide-leg-trousers%2Fp%2F467300818005&psig=AOvVaw3ZfMYnpWeq6Qowg6pTmRR1&ust=1735843130830000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKjMzduV1YoDFQAAAAAdAAAAABAE",
+        imgURL: "https://i.pinimg.com/1200x/4c/43/dd/4c43dd376b747da89e7d6659fface648.jpg",
         category: "Bottom-wear",
         gender: "female",
         brand: "H&M",
@@ -758,7 +758,7 @@ const products = [
             "XL"
         ],
         ratings: 4.8,
-        imgURL: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a7c6169641964096b373ad24003d51e2_9366/Essentials_Warm-Up_Tapered_3-Stripes_Track_Pants_Black_H46105_21_model.jpg",
+        imgURL: "https://i.pinimg.com/1200x/ff/e7/ea/ffe7ea609397197c3c9230f915ccc38c.jpg",
         category: "T-shirts",
         gender: "unisex",
         brand: "Adidas",
@@ -932,7 +932,7 @@ const products = [
             "XXL"
         ],
         ratings: 4.8,
-        imgURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1sUv2TWRV6BKuC3HcG3v8NiMIc8QtOjyvMvhBAwYuikFZNj92AUMl2x_47i6XU1JRBaA&usqp=CAU",
+        imgURL: "https://i.pinimg.com/736x/20/d8/a3/20d8a32d44850f1bc5fcd51fdd86c759.jpg",
         category: "Formals",
         gender: "male",
         brand: "Van Heusen",
@@ -961,7 +961,7 @@ const products = [
             "L"
         ],
         ratings: 4.7,
-        imgURL: "https://images.bestsellerclothing.in/data/vero-moda/3-nov-2023/106724101_g0.jpg?width=488&height=650&mode=fill&fill=blur&format=auto&dpr=1.2",
+        imgURL: "https://i.pinimg.com/1200x/fa/bf/e9/fabfe9248db73e2e9fa27d1c18b328b4.jpg",
         category: "Formals",
         gender: "female",
         brand: "Marks & Spencer",

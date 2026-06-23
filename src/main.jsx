@@ -7,7 +7,8 @@ import Product from './component/Product.jsx'
 import Cart from './component/Cart.jsx'
 import Profile from './component/Profile.jsx'
 import Home from './component/Home.jsx'
-import ErrorHandling from './component/ErrorHandling'
+import ErrorHandling from './component/ErrorHandling.jsx'
+import ProductPage from './component/ProductPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       {element:<Home />,
       index: true}
       ,{
-        path: "/product",
+        path: "/products",
         element: <Product />
       },
       {
@@ -30,9 +31,10 @@ const router = createBrowserRouter([
         element: <Profile />
       },
       {
-        path: "/product/:categoryName",
+        path: "/products/:categoryName",
         element: <Product />
-      }
+      },
+      {path:"/products/product/:productName"}
     ]
   }
 ])
