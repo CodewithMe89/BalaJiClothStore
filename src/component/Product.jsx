@@ -6,7 +6,7 @@ import ProductCard from './ProductCard'
 
 const Product = () => {
     const { categoryName } = useParams()
-
+    
     const filteredProducts = !categoryName
     ? products
     : products.filter(
@@ -19,12 +19,23 @@ const Product = () => {
             <section className="header">
                 <h2>{!categoryName ? "All Product" : categoryName}</h2>
 
-                <input type="text" placeholder="Search Products" />
+                <input type="text" placeholder="Search Products"  />
             </section>
 
             <section className="products-layout">
                 <div className="filters">
-
+                    <h2 className="filter-head">Filters</h2>
+                    <br />
+                    <h3 className="filter-head">Gender</h3>
+                    <label>
+                        <input type="radio" value="male" name="gender" />
+                        Male
+                    </label>
+                    <br />
+                    <label >
+                        <input type="radio" value="female" name="gender" />
+                        Female
+                    </label>
                 </div>
                 <div className="products">
                     {filteredProducts.map((product) => (
