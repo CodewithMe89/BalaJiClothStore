@@ -9,6 +9,8 @@ import Profile from './component/Profile.jsx'
 import Home from './component/Home.jsx'
 import ErrorHandling from './component/ErrorHandling.jsx'
 import ProductPage from './component/ProductPage.jsx'
+import {Store} from './component/store.js'
+import {Provider} from 'react-redux'
 
 const router = createBrowserRouter([
   {
@@ -42,8 +44,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Provider store={Store}>
     <RouterProvider router={router}>
     <App />
     </RouterProvider>
+    </Provider>
   </StrictMode>
 )

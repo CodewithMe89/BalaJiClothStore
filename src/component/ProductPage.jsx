@@ -1,9 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../data";
+import { FaArrowLeft } from "react-icons/fa";
 import '../Css/ProductPage.css'
 
 function ProductPage() {
+    const navigate = useNavigate()
 
+    const handleToBackFunction = () => {
+        navigate(-1)
+    }
     const { productName } = useParams();
 
     const product = products.find(
@@ -20,8 +25,8 @@ function ProductPage() {
 
     return (
         <>
+            <button onClick={handleToBackFunction}><FaArrowLeft /></button>
             <section className="product-page">
-
                 <div className="product-image">
                     <img
                         src={product.imgURL}
