@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import { categories, products } from '../data.js'
+import { categories,products} from '../data.js'
 import ProductCard from './ProductCard'
 
 
@@ -11,9 +11,18 @@ const Product = () => {
     const [rating, setRating] = useState(0)
     const [searchInput, setSearchInput] = useState("")
     const [selectedCategory, setSelectedCategory] = useState([])
-    const [productData] = useState(products)
+    const [productData,setProductData] = useState(products)
     const [filteredProduct, setFilteredProduct] = useState(products)
 
+    useEffect(() => {
+        fetch("https://bala-ji-backend.vercel.app/product").
+        then(res => res.json())
+        .then(res => {
+            
+            setFilteredProduct(res.productData)
+            setProductData(res.productData)
+        }).catch(err => console.log("Failed to fetch Data!",err))
+    },[])
     const handleSearchInput = (e) => {
         const searchText = e.target.value.toLowerCase()
 
@@ -73,7 +82,6 @@ const Product = () => {
         categoryFilter = selectedCategory) => {
         const filtered = productData.filter((product) => {
 
-            // BUG FIX: was `search = ""` (assignment) -> now `search === ""` (comparison)
             const searchMatch =
                 search === "" ||
                 product.productName.toLowerCase().includes(search) ||
