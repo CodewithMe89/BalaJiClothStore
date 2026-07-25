@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { products } from "../data";
+import {useSelector} from 'react-redux'
 import { FaArrowLeft } from "react-icons/fa";
 import '../Css/ProductPage.css'
 
 function ProductPage() {
     const navigate = useNavigate()
-
+    const products = useSelector((state) => state.product)
     const handleToBackFunction = () => {
         navigate(-1)
     }

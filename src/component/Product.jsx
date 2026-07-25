@@ -1,28 +1,40 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import { categories,products} from '../data.js'
+import { categories } from '../data.js'
+import { useSelector, useDispatch } from 'react-redux'
+import { addProductData } from './slice/ProductSlice'
 import ProductCard from './ProductCard'
-
+import ShimmerCard from './ShimmerCard'
 
 const Product = () => {
-
     const { categoryName } = useParams()
+    
+    const products = useSelector((state) => (state.product))
+    const dispatch = useDispatch()
+
     const [gender, setGender] = useState("")
+    const [load, setLoad] = useState(false)
     const [rating, setRating] = useState(0)
     const [searchInput, setSearchInput] = useState("")
     const [selectedCategory, setSelectedCategory] = useState([])
-    const [productData,setProductData] = useState(products)
-    const [filteredProduct, setFilteredProduct] = useState(products)
+    const [productData, setProductData] = useState([])
+    const [filteredProduct, setFilteredProduct] = useState(null)
 
     useEffect(() => {
+        setLoad(true)
         fetch("https://bala-ji-backend.vercel.app/product").
-        then(res => res.json())
-        .then(res => {
-            
-            setFilteredProduct(res.productData)
-            setProductData(res.productData)
-        }).catch(err => console.log("Failed to fetch Data!",err))
-    },[])
+            then(res => res.json())
+            .then((res => {
+                dispatch(addProductData(res.productData))
+                setProductData(res.productData)
+                setFilteredProduct(res.productData)
+            }
+            )
+            ).finally(() => {
+                setLoad(false)
+            })
+    }, [])
+
     const handleSearchInput = (e) => {
         const searchText = e.target.value.toLowerCase()
 
@@ -166,12 +178,16 @@ const Product = () => {
                     <button onClick={handleClearFilter}>Clear Filter</button>
                 </div>
                 <div className="products">
-                    {filteredProduct.length === 0 ? (
-                        <p>No products found.</p>
-                    ) : (
+                    {load ? (
+                        Array.from({length: 8}).map((_index) => (
+                            <ShimmerCard key={_index} />
+                        ))
+                    ) : filteredProduct && filteredProduct.length > 0 ? (
                         filteredProduct.map((product) => (
                             <ProductCard key={product.productName} product={product} />
                         ))
+                    ) : (
+                        <h2>No Product Found</h2>
                     )}
                 </div>
             </section>
