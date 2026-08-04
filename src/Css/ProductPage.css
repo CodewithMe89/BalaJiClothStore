@@ -334,6 +334,98 @@
 
 }
 
+.cart-success {
+    position: fixed;
+    overflow: hidden;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 330px;
+    padding: 18px 22px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .18);
+    border-left: 6px solid #28a745;
+    z-index: 9999;
+    animation: slideIn .35s ease;
+}
+
+.success-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #28a745;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.success-content h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #222;
+}
+
+.success-content p {
+    margin-top: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+.success-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background: #28a745;
+    animation: progress 2.5s linear forwards;
+}
+
+@keyframes progress {
+
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+
+}
+
+@keyframes slideIn {
+
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes slideOut {
+
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+}
+
 @media (max-width:1000px) {
 
     .product-page {

@@ -1,21 +1,24 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import {addItem} from './slice/CartSlice'
 import { FaArrowLeft } from "react-icons/fa";
 import ProductPageShimmer from './ProductPageShimmer'
 import '../Css/ProductPage.css'
+import {URL} from '../constant.js'
 
 function ProductPage() {
     const navigate = useNavigate()
     const products = useSelector((state) => state.product)
+    const dispatch = useDispatch()
     const { productName } = useParams();
     const [selectedSize, setSelectedSize] = useState('');
-
+    const [showSuccess,setShowSuccess] = useState(false)
     const handleToBackFunction = () => {
         navigate(-1)
     }
 
-   if(!Array.isArray(products) || products.length===0){
+    if (!Array.isArray(products) || products.length === 0) {
         return <ProductPageShimmer />
     }
 
@@ -31,6 +34,37 @@ function ProductPage() {
         product.price -
         (product.price * product.discountPercentage) / 100;
 
+    const handleCartSubmit = async () => {
+        const data = {
+            selectedSize:selectedSize,
+            productDetails:product._id,
+            quantity: 1
+        }
+
+        try{
+            const response = await fetch(`${URL}/cart`,{
+                method: "POST",
+                headers:{"Content-Type" : "application/json"},
+                body:JSON.stringify(data)
+            })
+            if(!response.ok){
+                throw new Error("Failed to update cart")
+            }
+            const result = await response.json();
+            if(result){
+                const {cartItem} = result
+                dispatch(addItem(cartItem))
+
+                setShowSuccess(true)
+
+                setTimeout(() => {
+                    setShowSuccess(false)
+                },2500)
+            }
+        }catch(err){
+            console.log(err)
+        }
+    }
     return (
         <>
             <button
@@ -122,7 +156,7 @@ function ProductPage() {
 
                     <div className="buttons">
 
-                        <button className="cart" disabled={!selectedSize}>
+                        <button className="cart" disabled={!selectedSize} onClick={handleCartSubmit}>
 
                             Add To Cart
 
@@ -196,6 +230,19 @@ function ProductPage() {
 
             </section>
 
+            {
+    showSuccess && (
+        <div className="cart-success">
+            <div className="success-icon">✓</div>
+
+            <div className="success-content">
+                <h4>Added to Cart</h4>
+                <p>{product.productName} has been added successfully.</p>
+            </div>
+            <div className="success-progress"></div>
+        </div>
+    )
+}
         </>
     )
 
