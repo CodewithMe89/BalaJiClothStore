@@ -1,0 +1,1 @@
+export const URL = "https://bala-ji-backend.vercel.app"

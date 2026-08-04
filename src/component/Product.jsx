@@ -5,13 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addProductData } from './slice/ProductSlice'
 import ProductCard from './ProductCard'
 import ShimmerCard from './ShimmerCard'
+import { URL } from '../constant.js'
 
 const Product = () => {
     const { categoryName } = useParams()
-    
     const products = useSelector((state) => (state.product))
     const dispatch = useDispatch()
-
     const [gender, setGender] = useState("")
     const [load, setLoad] = useState(false)
     const [rating, setRating] = useState(0)
@@ -22,15 +21,22 @@ const Product = () => {
 
     useEffect(() => {
         setLoad(true)
-        fetch("https://bala-ji-backend.vercel.app/product").
-            then(res => res.json())
-            .then((res => {
+        fetch(`${URL}/product`)
+            .then(res => res.json())
+            .then((res) => {
                 dispatch(addProductData(res.productData))
                 setProductData(res.productData)
-                setFilteredProduct(res.productData)
-            }
-            )
-            ).finally(() => {
+
+                const initialFiltered = categoryName
+                    ? res.productData.filter(
+                        (product) =>
+                            product.category.toLowerCase() === categoryName.toLowerCase()
+                    )
+                    : res.productData
+
+                setFilteredProduct(initialFiltered)
+            })
+            .finally(() => {
                 setLoad(false)
             })
     }, [])
@@ -84,8 +90,9 @@ const Product = () => {
     }
 
     useEffect(() => {
-        applyFilters()
-    }, [categoryName])
+        if (productData.length > 0)
+            applyFilters()
+    }, [categoryName, productData])
 
     const applyFilters = (
         search = searchInput,
@@ -179,7 +186,7 @@ const Product = () => {
                 </div>
                 <div className="products">
                     {load ? (
-                        Array.from({length: 8}).map((_index) => (
+                        Array.from({ length: 8 }).map((_index) => (
                             <ShimmerCard key={_index} />
                         ))
                     ) : filteredProduct && filteredProduct.length > 0 ? (

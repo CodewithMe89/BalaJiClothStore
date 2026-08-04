@@ -1,15 +1,23 @@
 import { useParams, useNavigate } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { FaArrowLeft } from "react-icons/fa";
+import ProductPageShimmer from './ProductPageShimmer'
 import '../Css/ProductPage.css'
 
 function ProductPage() {
     const navigate = useNavigate()
     const products = useSelector((state) => state.product)
+    const { productName } = useParams();
+    const [selectedSize, setSelectedSize] = useState('');
+
     const handleToBackFunction = () => {
         navigate(-1)
     }
-    const { productName } = useParams();
+
+   if(!Array.isArray(products) || products.length===0){
+        return <ProductPageShimmer />
+    }
 
     const product = products.find(
         item => item.productName === productName
@@ -25,7 +33,11 @@ function ProductPage() {
 
     return (
         <>
-            <button onClick={handleToBackFunction}><FaArrowLeft /></button>
+            <button
+                onClick={handleToBackFunction}
+                className="back-btn">
+                <FaArrowLeft /> Back
+            </button>
             <section className="product-page">
                 <div className="product-image">
                     <img
@@ -45,7 +57,7 @@ function ProductPage() {
                     </h1>
 
                     <div className="rating">
-                        ⭐ {product.ratings}
+                        ⭐ {product.ratings} / 5
                     </div>
 
                     <div className="price">
@@ -73,19 +85,23 @@ function ProductPage() {
                         Inclusive of all taxes
                     </p>
 
-                    <div className="offers">
-
-                        <h3>Available Offers</h3>
-
-                        <p>🏷️ Bank Offer - 10% Instant Discount</p>
-
-                        <p>🚚 Free Delivery Available</p>
-
-                        <p>🔄{product.exchangePolicy}</p>
-
-                        <p>💳 EMI starting from ₹299/month</p>
-
+                    <div className="offer-item">
+                        🏷️ Bank Offer - 10% Instant Discount
                     </div>
+
+                    <div className="offer-item">
+                        🚚 Free Delivery Available
+                    </div>
+
+                    <div className="offer-item">
+                        🔄 {product.exchangePolicy}
+                    </div>
+
+                    <div className="offer-item">
+                        💳 EMI starting from ₹299/month
+                    </div>
+
+                    <hr className="divider" />
 
                     <h3>Select Size</h3>
 
@@ -93,8 +109,11 @@ function ProductPage() {
 
                         {product.sizes.map(size => (
 
-                            <button key={size}>
-                                {size}
+                            <button
+                                key={size}
+                                className={selectedSize === size ? "active-size" : ""}
+                                onClick={() => setSelectedSize(size)}>
+                                <span>{size}</span>
                             </button>
 
                         ))}
@@ -103,13 +122,13 @@ function ProductPage() {
 
                     <div className="buttons">
 
-                        <button className="cart">
+                        <button className="cart" disabled={!selectedSize}>
 
                             Add To Cart
 
                         </button>
 
-                        <button className="buy">
+                        <button className="buy" disabled={!selectedSize}>
 
                             Buy Now
 

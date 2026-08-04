@@ -1,0 +1,110 @@
+/* Base shimmer animation */
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.shimmer-image,
+.shimmer-line,
+.shimmer-size-box,
+.shimmer-btn {
+    background: linear-gradient(
+        90deg,
+        #e0e0e0 25%,
+        #f0f0f0 50%,
+        #e0e0e0 75%
+    );
+    background-size: 800px 100px;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 6px;
+}
+
+/* Image placeholder */
+.shimmer-image {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+/* Generic line */
+.shimmer-line {
+    height: 16px;
+    margin-bottom: 12px;
+}
+
+.shimmer-brand {
+    width: 30%;
+    height: 12px;
+}
+
+.shimmer-title {
+    width: 70%;
+    height: 24px;
+}
+
+.shimmer-rating {
+    width: 20%;
+    height: 14px;
+}
+
+.shimmer-price-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.shimmer-price {
+    width: 90px;
+    height: 22px;
+    margin-bottom: 0;
+}
+
+.shimmer-mrp {
+    width: 60px;
+    height: 22px;
+    margin-bottom: 0;
+}
+
+.shimmer-tax {
+    width: 40%;
+    height: 12px;
+}
+
+.shimmer-offer {
+    width: 60%;
+    height: 14px;
+}
+
+.shimmer-heading {
+    width: 25%;
+    height: 18px;
+    margin-top: 10px;
+}
+
+.shimmer-sizes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.shimmer-size-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+}
+
+.shimmer-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.shimmer-btn {
+    flex: 1;
+    height: 45px;
+    border-radius: 8px;
+}
