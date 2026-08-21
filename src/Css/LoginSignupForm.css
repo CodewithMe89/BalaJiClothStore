@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* =========================
+   DESIGN TOKENS
+========================= */
+
+:root {
+    --color-bg: #f4ede4;
+    --color-surface: #ffffff;
+    --color-primary: #5b1a2b;
+    --color-primary-hover: #4a1522;
+    --color-accent: #b8863e;
+    --color-accent-soft: #ecdcc0;
+    --color-text: #2a1a1f;
+    --color-text-muted: #8a7873;
+    --color-border: #e8ddd2;
+    --color-error: #a3312a;
+    --color-error-bg: #fbeceb;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', Arial, sans-serif;
+
+    --radius-lg: 14px;
+    --radius-md: 8px;
+    --shadow-card: 0 20px 45px rgba(91, 26, 43, 0.12);
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(184, 134, 62, 0.07), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(91, 26, 43, 0.06), transparent 40%);
+    min-height: 100vh;
+    color: var(--color-text);
+}
+
+/* =========================
+   PAGE CONTAINER
+========================= */
+
+.container {
+    min-height: calc(100vh - 133px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-container {
+    position: relative;
+    width: 400px;
+    max-width: 100%;
+    background-color: var(--color-surface);
+    padding: 32px 28px 28px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+/* signature stitch-line trim along the top edge */
+.form-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+            var(--color-accent) 0px,
+            var(--color-accent) 10px,
+            transparent 10px,
+            transparent 18px);
+}
+
+/* =========================
+   LOGIN / SIGNUP TOGGLE
+========================= */
+
+.form-toggle {
+    display: flex;
+    width: 100%;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.form-toggle button {
+    width: 50%;
+    padding: 12px 8px 14px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.form-toggle button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+}
+
+.form-toggle button:hover {
+    color: var(--color-primary);
+}
+
+.form-toggle .active {
+    color: var(--color-primary);
+}
+
+.form-toggle .active::after {
+    width: 60%;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form h2 {
+    margin: 0 0 22px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--color-primary);
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.form input:not([type="radio"]) {
+    width: 100%;
+    padding: 13px 14px;
+    margin-bottom: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text);
+    background-color: #fdfbf9;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:not([type="radio"])::placeholder {
+    color: #b6a9a4;
+}
+
+.form input:not([type="radio"]):focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(91, 26, 43, 0.1);
+    background-color: var(--color-surface);
+}
+
+/* =========================
+   ERROR TEXT
+========================= */
+
+.error-text {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    margin: 0 0 14px;
+    border: 1px solid rgba(163, 49, 42, 0.2);
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.form a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form a:hover {
+    text-decoration: underline;
+}
+
+.form>a:first-of-type {
+    align-self: flex-end;
+    margin-bottom: 14px;
+}
+
+/* =========================
+   GENDER RADIOS
+========================= */
+
+.gender {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 2px 0 18px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+.gender label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.gender input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-primary);
+    margin: 0;
+    cursor: pointer;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.form>button,
+.form button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.form>button:hover,
+.form button[type="submit"]:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.form>button:active,
+.form button[type="submit"]:active {
+    transform: scale(0.99);
+}
+
+.form button[type="button"]:not(.switch-form) {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    margin-top: 10px;
+}
+
+.form button[type="button"]:not(.switch-form):hover {
+    background-color: var(--color-accent-soft);
+    border-color: var(--color-accent);
+}
+
+.switch-form {
+    border: none;
+    background: transparent;
+    color: var(--color-accent);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 14px;
+    text-align: center;
+}
+
+.switch-form:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   PROFILE / LOGGED-IN VIEW
+========================= */
+
+.user-data {
+    width: 400px;
+    max-width: 100%;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border);
+    padding: 32px 28px 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-data::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+            var(--color-accent) 0px,
+            var(--color-accent) 10px,
+            transparent 10px,
+            transparent 18px);
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.user-data h2 {
+    margin: 0 0 18px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--color-primary);
+}
+
+.user-data p {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 12px 0;
+    font-size: 15px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+.user-data p:last-of-type {
+    border-bottom: none;
+}
+
+.user-data p::before {
+    content: attr(data-label);
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.user-data button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.user-data button:first-of-type {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+.user-data button:first-of-type:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.user-data button:last-of-type {
+    background-color: transparent;
+    color: var(--color-error);
+    border: 1px solid rgba(163, 49, 42, 0.3);
+}
+
+.user-data button:last-of-type:hover {
+    background-color: var(--color-error-bg);
+}
+
+.user-data button:active {
+    transform: scale(0.99);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        min-height: calc(100vh - 100px);
+        padding: 25px 15px;
+    }
+
+    .form-container,
+    .user-data {
+        width: 100%;
+        padding: 24px 20px 20px;
+    }
+
+    .form h2,
+    .user-data h2 {
+        font-size: 24px;
+    }
+
+    .form-toggle button {
+        font-size: 13px;
+    }
+}
+
+/* =========================
+   TOAST NOTIFICATION
+========================= */
+
+.toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(91, 26, 43, 0.25);
+    z-index: 1000;
+    animation: toast-in 0.3s ease, toast-out 0.3s ease 2.7s;
+    animation-fill-mode: forwards;
+}
+
+.toast-success {
+    background-color: var(--color-primary);
+}
+
+.toast-error {
+    background-color: var(--color-error);
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes toast-out {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -12px);
+    }
+}
+
+@media (max-width: 600px) {
+    .toast {
+        width: calc(100% - 40px);
+        text-align: center;
+    }
+}
