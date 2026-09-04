@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
-import {addItem} from './slice/CartSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { addItem } from './slice/CartSlice'
 import { FaArrowLeft } from "react-icons/fa";
 import ProductPageShimmer from './ProductPageShimmer'
 import '../Css/ProductPage.css'
-import {URL} from '../constant.js'
+import { URL } from '../constant.js'
 
 function ProductPage() {
     const navigate = useNavigate()
@@ -13,7 +13,7 @@ function ProductPage() {
     const dispatch = useDispatch()
     const { productName } = useParams();
     const [selectedSize, setSelectedSize] = useState('');
-    const [showSuccess,setShowSuccess] = useState(false)
+    const [showSuccess, setShowSuccess] = useState(false)
     const handleToBackFunction = () => {
         navigate(-1)
     }
@@ -36,32 +36,30 @@ function ProductPage() {
 
     const handleCartSubmit = async () => {
         const data = {
-            selectedSize:selectedSize,
-            productDetails:product._id,
+            selectedSize: selectedSize,
+            productDetails: product._id,
             quantity: 1
         }
 
-        try{
-            const response = await fetch(`${URL}/cart`,{
+        try {
+            const response = await fetch(`${URL}/cart`, {
                 method: "POST",
-                headers:{"Content-Type" : "application/json"},
-                body:JSON.stringify(data)
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
             })
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error("Failed to update cart")
             }
             const result = await response.json();
-            if(result){
-                const {cartItem} = result
-                dispatch(addItem(cartItem))
+            if (result?.newCartItem) {
+                dispatch(addItem(result.newCartItem))
 
                 setShowSuccess(true)
-
                 setTimeout(() => {
                     setShowSuccess(false)
-                },2500)
+                }, 2500)
             }
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -231,18 +229,18 @@ function ProductPage() {
             </section>
 
             {
-    showSuccess && (
-        <div className="cart-success">
-            <div className="success-icon">✓</div>
+                showSuccess && (
+                    <div className="cart-success">
+                        <div className="success-icon">✓</div>
 
-            <div className="success-content">
-                <h4>Added to Cart</h4>
-                <p>{product.productName} has been added successfully.</p>
-            </div>
-            <div className="success-progress"></div>
-        </div>
-    )
-}
+                        <div className="success-content">
+                            <h4>Added to Cart</h4>
+                            <p>{product.productName} has been added successfully.</p>
+                        </div>
+                        <div className="success-progress"></div>
+                    </div>
+                )
+            }
         </>
     )
 
